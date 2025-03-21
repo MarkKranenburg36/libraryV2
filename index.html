@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookTrack</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <aside id="sideBar">
+    <button id="addBookBtn">Add Book</button>
+    <div>
+      <p>Dubble click card to toggle:</p>
+      <div id="legendFinished" class="legend">Finished</div>
+      <div id="legendNotFinished" class="legend">Not Finished</div>
+    </div>
+  </aside>
+  <main id="main">
+
+  </main>
+  <dialog id="addBookDialog">
+    <form method="dialog" id="dialogForm">
+      <h2>Add Book</h2>
+      <input type="text" placeholder="Titel" id="dialogInputBoxTitle">
+      <input type="text" placeholder="Author" id="dialogInputBoxAuthor">
+      <input type="number" placeholder="Pages" id="dialogInputBoxPages">
+      <div id="formDivFinished">
+        <p>Is book finished?</p>
+        <label for="yes">
+          <input type="radio" id="yes" name="yesOrNo" value="yes"> Yes
+        </label>
+        <label for="no">
+          <input type="radio" id="no" name="yesOrNo" value="no"> No
+        </label>
+      </div>
+      <button type="submit" id="submitDialogBtn">Add</button>
+      <button type="button" id="closeDialog">Cancel</button>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+
+</html>
