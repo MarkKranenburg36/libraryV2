@@ -19,12 +19,9 @@ function Book(title, author, numOfPages, isFinished, id) {
     }
 
     this.removeSelf = function (event) {
-        const bookIdToRemove = event.target.parentElement.parentElement.dataset.identity;
-        for (let i = 0; i < bookCollection.length; i++) {
-            if (bookIdToRemove == bookCollection[i].id) {
-                bookCollection.splice(i, 1)
-            }
-        }
+        const bookIdToRemoveId = event.target.parentElement.parentElement.dataset.identity;
+        const bookIdToRemoveIndex = bookCollection.findIndex(book => book.id === bookIdToRemoveId);
+        bookCollection.splice(bookIdToRemoveIndex, 1);
         displayBooks();
     }
 }
