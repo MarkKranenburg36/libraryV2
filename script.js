@@ -8,7 +8,8 @@ function Book(title, author, numOfPages, isFinished, id) {
     this.id = id;
 
     this.toggleBookFinished = function (event) {
-        bookToToggleId = event.target.closest('[data-identity]');
+        bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
+        console.log(bookToToggleId)
 
         for (const book of bookCollection) {
             if (book.id == bookToToggleId) {
