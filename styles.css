@@ -3,7 +3,6 @@ html, body {
     display: flex;
 }
 
-
 body {
     background-color: #121212;
     color: #e0e0e0;
@@ -51,7 +50,7 @@ button:hover {
 }
 
 #sideBar {
-    max-width: 200px;
+    width: 20%;
     width: clamp(20px, 20vw, 200px);
     background-color: #bb86fc;
     padding: clamp(0.25rem, 0.5rem, 1rem);
@@ -81,7 +80,7 @@ button:hover {
 
 .bookCard {
     background-color: #2d2d2d; /* Wordt overschreven. */
-    padding: clamp(10px, 2rem, 50px);
+    padding: clamp(5px, 5rem, 50px);
     border-radius: 0.75rem;
     display: grid;
     grid-template-rows: auto auto 1fr;
@@ -145,4 +144,19 @@ button:hover {
 
 #formDivFinished {
     margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    html, body {
+        flex-direction: column;
+    }
+
+    #sideBar {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
 }
