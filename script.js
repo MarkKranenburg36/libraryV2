@@ -6,25 +6,24 @@ function Book(title, author, numOfPages, isFinished, id) {
     this.numOfPages = numOfPages;
     this.isFinished = isFinished;
     this.id = id;
+}
 
-    this.toggleBookFinished = function (event) {
-        bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
-        console.log(bookToToggleId)
+Book.prototype.toggleBookFinished = function (event) {
+    bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
 
-        for (const book of bookCollection) {
-            if (book.id == bookToToggleId) {
-                book.isFinished = !book.isFinished;
-            }
+    for (const book of bookCollection) {
+        if (book.id == bookToToggleId) {
+            book.isFinished = !book.isFinished;
         }
-        displayBooks();
     }
+    displayBooks();
+}
 
-    this.removeSelf = function (event) {
-        const bookIdToRemoveId = event.target.parentElement.parentElement.dataset.identity;
-        const bookIdToRemoveIndex = bookCollection.findIndex(book => book.id === bookIdToRemoveId);
-        bookCollection.splice(bookIdToRemoveIndex, 1);
-        displayBooks();
-    }
+Book.prototype.removeSelf = function (event) {
+    const bookIdToRemoveId = event.target.parentElement.parentElement.dataset.identity;
+    const bookIdToRemoveIndex = bookCollection.findIndex(book => book.id === bookIdToRemoveId);
+    bookCollection.splice(bookIdToRemoveIndex, 1);
+    displayBooks();
 }
 
 function addBookToLibrary(title, author, numOfPages, isFinished) {
@@ -68,8 +67,8 @@ function displayBooks() {
         isFinishedDisplay.innerText = book.isFinished ? 'Finished' : 'Not Finished';
         bookCard.appendChild(isFinishedDisplay);
 
-        bookCard.addEventListener('dblclick', book.toggleBookFinished);
-        removeBtn.addEventListener('click', book.removeSelf);
+        bookCard.addEventListener('dblclick', book.toggleBookFinished.bind(book));
+        removeBtn.addEventListener('click', book.removeSelf.bind(book));
 
         if (book.isFinished) {
             bookCard.classList.add('bookCard-Finished');
@@ -110,18 +109,17 @@ function submitDialog(event) {
 
 function getFinishedStatus() {
     const dialogInputRadioIsFinished = document.querySelector('input[name="yesOrNo"]:checked');
-    if (dialogInputRadioIsFinished.value == 'yes') {
-        return true
-    } else {
-        return false
-    }
+    return dialogInputRadioIsFinished.value === 'yes';
 }
 
 document.getElementById('addBookBtn').addEventListener('click', openDialog);
 document.getElementById('closeDialog').addEventListener('click', closeDialog);
 document.getElementById('submitDialogBtn').addEventListener('click', submitDialog);
 
-addBookToLibrary('God dobbelt niet op de beurs', 'Jan Longeval', 223, true);
-addBookToLibrary('The Power of Habit', 'Charles Duhigg', 443, false);
+window.onload = function () {
+    addBookToLibrary('God dobbelt niet op de beurs', 'Jan Longeval', 223, true);
+    addBookToLibrary('The Power of Habit', 'Charles Duhigg', 443, false);
 
-displayBooks();
+    displayBooks();
+};
+
