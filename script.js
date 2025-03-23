@@ -9,6 +9,7 @@ function Book(title, author, numOfPages, isFinished, id) {
 }
 
 Book.prototype.toggleBookFinished = function (event) {
+    event.preventDefault();
     bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
 
     for (const book of bookCollection) {
@@ -67,7 +68,7 @@ function displayBooks() {
         isFinishedDisplay.innerText = book.isFinished ? 'Finished' : 'Not Finished';
         bookCard.appendChild(isFinishedDisplay);
 
-        bookCard.addEventListener('dblclick', book.toggleBookFinished.bind(book));
+        bookCard.addEventListener('contextmenu', book.toggleBookFinished.bind(book));
         removeBtn.addEventListener('click', book.removeSelf.bind(book));
 
         if (book.isFinished) {
@@ -120,6 +121,10 @@ window.onload = function () {
     addBookToLibrary('God dobbelt niet op de beurs', 'Jan Longeval', 223, true);
     addBookToLibrary('The Power of Habit', 'Charles Duhigg', 443, false);
 
+    if(window.innerWidth < 600){
+        document.getElementById('legendText').innerText = 'Hold card to toggle:';
+    }
+    
     displayBooks();
 };
 

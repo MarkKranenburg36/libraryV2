@@ -158,6 +158,10 @@ button:hover {
         align-items: center;
     }
 
+    .legendAside {
+        margin: auto 2.5vh;
+    }
+
     main {
         grid-template-columns: 1fr;
     }
