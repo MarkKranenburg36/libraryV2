@@ -68,7 +68,7 @@ function displayBooks() {
         isFinishedDisplay.innerText = book.isFinished ? 'Finished' : 'Not Finished';
         bookCard.appendChild(isFinishedDisplay);
 
-        bookCard.addEventListener('contextmenu', book.toggleBookFinished.bind(book));
+        bookCard.addEventListener('dblclick', book.toggleBookFinished.bind(book));
         removeBtn.addEventListener('click', book.removeSelf.bind(book));
 
         if (book.isFinished) {
@@ -122,7 +122,7 @@ window.onload = function () {
     addBookToLibrary('The Power of Habit', 'Charles Duhigg', 443, false);
 
     if(window.innerWidth < 600){
-        document.getElementById('legendText').innerText = 'Hold card to toggle:';
+        document.getElementById('legendText').innerText = 'Dubble tab card to toggle:';
     }
     
     displayBooks();
