@@ -9,7 +9,6 @@ function Book(title, author, numOfPages, isFinished, id) {
 }
 
 Book.prototype.toggleBookFinished = function (event) {
-    event.preventDefault();
     document.getElementById('sideBar').style.backgroundColor = 'red';
     bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
 
