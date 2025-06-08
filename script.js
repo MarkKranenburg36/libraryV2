@@ -1,29 +1,31 @@
 const bookCollection = [];
 
-function Book(title, author, numOfPages, isFinished, id) {
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.isFinished = isFinished;
-    this.id = id;
-}
-
-Book.prototype.toggleBookFinished = function (event) {
-    bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
-
-    for (const book of bookCollection) {
-        if (book.id == bookToToggleId) {
-            book.isFinished = !book.isFinished;
-        }
+class Book {
+    constructor(title, author, numOfPages, isFinished, id) {
+        this.title = title;
+        this.author = author;
+        this.numOfPages = numOfPages;
+        this.isFinished = isFinished;
+        this.id = id;
     }
-    displayBooks();
-}
 
-Book.prototype.removeSelf = function (event) {
-    const bookIdToRemoveId = event.target.parentElement.parentElement.dataset.identity;
-    const bookIdToRemoveIndex = bookCollection.findIndex(book => book.id === bookIdToRemoveId);
-    bookCollection.splice(bookIdToRemoveIndex, 1);
-    displayBooks();
+    toggleBookFinished(event) {
+        bookToToggleId = event.target.closest('[data-identity]').dataset.identity;
+
+        for (const book of bookCollection) {
+            if (book.id == bookToToggleId) {
+                book.isFinished = !book.isFinished;
+            }
+        }
+        displayBooks();
+    }
+
+    removeSelf(event) {
+        const bookIdToRemoveId = event.target.parentElement.parentElement.dataset.identity;
+        const bookIdToRemoveIndex = bookCollection.findIndex(book => book.id === bookIdToRemoveId);
+        bookCollection.splice(bookIdToRemoveIndex, 1);
+        displayBooks();
+    }
 }
 
 function addBookToLibrary(title, author, numOfPages, isFinished) {
@@ -120,10 +122,10 @@ window.onload = function () {
     addBookToLibrary('God dobbelt niet op de beurs', 'Jan Longeval', 223, true);
     addBookToLibrary('The Power of Habit', 'Charles Duhigg', 443, false);
 
-    if(window.innerWidth < 600){
+    if (window.innerWidth < 600) {
         document.getElementById('legendText').innerText = 'Dubble tab card to toggle:';
     }
-    
+
     displayBooks();
 };
 
